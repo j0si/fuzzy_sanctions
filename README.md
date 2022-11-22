@@ -36,3 +36,8 @@ Bereich: Natural Language Processing
 
 ## welche zwischenschritte haben wir?
 
+##additional ideas
+- Categories of Sanctions
+- Country separation
+- Male / Female 
+
