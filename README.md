@@ -22,4 +22,7 @@ Bereich: Natural Language Processing
 - https://www.bex.ag/sanktionslisten/
 - 
 
+## welche packages kann man nutzen?
+
+## welche zwischenschritte haben wir?
 
