@@ -19,7 +19,8 @@ Bereich: Natural Language Processing
 - https://medium.com/warwick-artificial-intelligence/fuzzy-matching-word-vectors-and-google-ml-kit-lessons-learned-d2376d87ef8a
 - https://www.rosette.com/blog/word-embeddings-for-fuzzy-matching-of-organization-names/
 
-
+  A Fuzzy Approach to Approximate String Matching for Text Retrieval in NLP:
+  - 333339583_A_Fuzzy_Approach_to_Approximate_String_Matching_for_Text_Retrieval_in_NLP
 ## wo sind daten?
 - https://www.finanz-sanktionsliste.de/fisalis/
 - https://www.bex.ag/sanktionslisten/
