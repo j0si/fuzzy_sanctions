@@ -17,6 +17,7 @@ Bereich: Natural Language Processing
 - https://www.datacamp.com/tutorial/fuzzy-string-python
 
 - https://medium.com/warwick-artificial-intelligence/fuzzy-matching-word-vectors-and-google-ml-kit-lessons-learned-d2376d87ef8a
+- https://www.rosette.com/blog/word-embeddings-for-fuzzy-matching-of-organization-names/
 
 
 ## wo sind daten?
