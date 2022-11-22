@@ -25,7 +25,9 @@ Bereich: Natural Language Processing
 ## wo sind daten?
 - https://www.finanz-sanktionsliste.de/fisalis/
 - https://www.bex.ag/sanktionslisten/
-- 
+
+## Tutorials
+- http://echrislynch.com/2018/07/13/turning-a-pdf-into-a-pandas-dataframe/
 
 ## welche packages kann man nutzen?
 
