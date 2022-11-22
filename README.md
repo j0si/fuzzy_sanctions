@@ -8,7 +8,7 @@ Bereich: Natural Language Processing
 ## was wollen wir erreichen?
 1. Eingabe von Namen eines Businesspartners
 2. Ergebnis, ob dieser Name in sanktionsliste vorhanden oder nicht
-3. Ergebnis mit relevanten Kennzahlen
+3. Ergebnis mit relevanten Kennzahlen ( Wortähnlichkeit,....
 
 ## linkliste, erster research
 - https://towardsdatascience.com/fuzzy-string-matching-in-python-68f240d910fe
