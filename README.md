@@ -6,9 +6,9 @@ Aufgabe: Unter Verwendung existierender Python-Bibliotheken (Gensim, etc) Erstel
 Bereich: Natural Language Processing
 
 ## was wollen wir erreichen?
-1. eingabe von businesspartner namen
-2. ergebnis ob in sanktionsliste vorhanden oder nicht
-3. ergebnis mit kennzahlen
+1. Eingabe von Namen eines Businesspartners
+2. Ergebnis, ob dieser Name in sanktionsliste vorhanden oder nicht
+3. Ergebnis mit relevanten Kennzahlen
 
 ## linkliste, erster research
 - https://towardsdatascience.com/fuzzy-string-matching-in-python-68f240d910fe
@@ -30,6 +30,9 @@ Bereich: Natural Language Processing
 - http://echrislynch.com/2018/07/13/turning-a-pdf-into-a-pandas-dataframe/
 
 ## welche packages kann man nutzen?
+- PyPDF2
+- spacy
+- gensim
 
 ## welche zwischenschritte haben wir?
 
