@@ -16,6 +16,8 @@ Bereich: Natural Language Processing
 - https://pypi.org/project/fuzzysearch/
 - https://www.datacamp.com/tutorial/fuzzy-string-python
 
+- https://medium.com/warwick-artificial-intelligence/fuzzy-matching-word-vectors-and-google-ml-kit-lessons-learned-d2376d87ef8a
+
 
 ## wo sind daten?
 - https://www.finanz-sanktionsliste.de/fisalis/
