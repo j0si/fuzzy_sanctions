@@ -10,7 +10,13 @@ Bereich: Natural Language Processing
    1. Sofern der Name Falsch geschrieben wurde soll eine Word-Embedding Methode den richtigen Namen Fuzzy erkennen können
 2. Ergebnis, ob dieser Name in sanktionsliste vorhanden oder nicht
 3. WebApp für die Eingabe und das Ausgeben der Ergebnisse
-4. Ergebnis mit relevanten Kennzahlen ( Wortähnlichkeit,....
+4. Ergebnis mit relevanten Kennzahlen (güte von word embedding)
+   1. extrinsisch
+      - wie gut funktioniert ein anderes modell?
+      - wie gut funktioniert die klassifikiation
+   2. intrinsisch
+      - wort vektoren anschauen, wie gut sind die? 
+      - mit menschlichen dictionaries vergleichen ob der vektor genau die gleiche ähnlichkeit ausssagt!
 
 ## Linkliste, erster research
 - https://towardsdatascience.com/fuzzy-string-matching-in-python-68f240d910fe
