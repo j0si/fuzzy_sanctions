@@ -27,8 +27,8 @@ Bereich: Natural Language Processing
 - https://medium.com/warwick-artificial-intelligence/fuzzy-matching-word-vectors-and-google-ml-kit-lessons-learned-d2376d87ef8a
 - https://www.rosette.com/blog/word-embeddings-for-fuzzy-matching-of-organization-names/
 
-  A Fuzzy Approach to Approximate String Matching for Text Retrieval in NLP:
-  - https://www.researchgate.net/publication/333339583_A_Fuzzy_Approach_to_Approximate_String_Matching_for_Text_Retrieval_in_NLP
+A Fuzzy Approach to Approximate String Matching for Text Retrieval in NLP:
+- https://www.researchgate.net/publication/333339583_A_Fuzzy_Approach_to_Approximate_String_Matching_for_Text_Retrieval_in_NLP
   
 Fuzzy matching entities in a custom entity dictionary
 - https://medium.com/tailo-ai/fuzzy-matching-entities-in-a-custom-entity-dictionary-310158d2b60e
@@ -46,6 +46,8 @@ Fuzzy matching entities in a custom entity dictionary
 
 ## word embeddings
 - https://towardsdatascience.com/word-embeddings-exploration-explanation-and-exploitation-with-code-in-python-5dac99d5d795
+Gensim_Word2Vec_Tutorial
+- https://www.kaggle.com/code/pierremegret/gensim-word2vec-tutorial
 
 ## Welche zwischenschritte haben wir?
 
