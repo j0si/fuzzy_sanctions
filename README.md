@@ -34,6 +34,9 @@ Bereich: Natural Language Processing
 - spacy
 - gensim
 
+## word embeddings
+- https://towardsdatascience.com/word-embeddings-exploration-explanation-and-exploitation-with-code-in-python-5dac99d5d795
+
 ## Welche zwischenschritte haben wir?
 
 ##additional ideas
