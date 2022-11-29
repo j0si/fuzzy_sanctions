@@ -7,8 +7,10 @@ Bereich: Natural Language Processing
 ---
 ## Was wollen wir erreichen?
 1. Eingabe von Namen eines Businesspartners
+   1. Sofern der Name Falsch geschrieben wurde soll eine Word-Embedding Methode den richtigen Namen Fuzzy erkennen können
 2. Ergebnis, ob dieser Name in sanktionsliste vorhanden oder nicht
-3. Ergebnis mit relevanten Kennzahlen ( Wortähnlichkeit,....
+3. WebApp für die Eingabe und das Ausgeben der Ergebnisse
+4. Ergebnis mit relevanten Kennzahlen ( Wortähnlichkeit,....
 
 ## Linkliste, erster research
 - https://towardsdatascience.com/fuzzy-string-matching-in-python-68f240d910fe
@@ -22,6 +24,8 @@ Bereich: Natural Language Processing
   A Fuzzy Approach to Approximate String Matching for Text Retrieval in NLP:
   - https://www.researchgate.net/publication/333339583_A_Fuzzy_Approach_to_Approximate_String_Matching_for_Text_Retrieval_in_NLP
   
+Fuzzy matching entities in a custom entity dictionary
+- https://medium.com/tailo-ai/fuzzy-matching-entities-in-a-custom-entity-dictionary-310158d2b60e
 ## Datenzugriff
 - https://www.finanz-sanktionsliste.de/fisalis/
 - https://www.bex.ag/sanktionslisten/
