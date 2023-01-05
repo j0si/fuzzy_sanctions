@@ -3,12 +3,25 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Add a title and intro text
-st.title('WebEmbedding European UnionConsolidated Financial Sanctions List')
-st.text('This is a web app to fuzzy search possible business partners')
+st.title('European UnionConsolidated Financial Sanctions List')
+st.text('Check the status of potential business partners')
+
+st.sidebar.markdown("# Main page ")
+
+#col1, col2 = st.columns(2  )
+userInputName = st.text_input('Enter possible name of partner', 'Search')
+st.write('Entered name', userInputName)
+
+#userInputAddress = col2.st.text_input('Enter possible address of partner', 'Search')
+#col2.st.write('Entered address')
 
 
-userInput = st.text_input('Business Partner', 'Search')
-st.write('Business Partner is', userInput)
+
+col3, col4, col5 = st.columns(3)
+col3.metric("Temperature", "70 °F", "1.2 °F")
+col4.metric("Wind", "9 mph", "-8%")
+col5.metric("Humidity", "86%", "4%")
+
 
 
 # Further imports 
@@ -67,4 +80,4 @@ def findBusinessPartner(input, name, threshold):
 
 
 
-st.write('Business Partner is', findBusinessPartner(n, userInput, 95))
+#st.write('Business Partner is', findBusinessPartner(n, userInputName, 60))
