@@ -15,6 +15,69 @@ st.write('Entered name', userInputName)
 #userInputAddress = col2.st.text_input('Enter possible address of partner', 'Search')
 #col2.st.write('Entered address')
 
+# Further imports of functions
+from nltk.tokenize import word_tokenize
+from gensim.models.phrases import Phrases, Phraser
+#import fuzzysearch
+#import fuzzywuzzy
+import PyPDF2
+
+pdfFileObj = open('20221118-FULL.pdf', 'rb') #Create pdf object
+pdfReader = PyPDF2.PdfReader(pdfFileObj) 
+
+allText = ""
+for i in range(792): #Iterating over n pages 
+    pageObj = pdfReader.pages[i]
+    page = pageObj.extract_text()
+    allText += page #Store page content into string variable
+
+# Preprocessing
+allText = allText.replace(';','')
+
+alltext_string_all = allText.replace('Legal basis',';Legal basis').replace('Identity information',';Identity information').replace('Programme', ';Programme').replace('Birth information',';Birth information').replace('Citizenship information',';Citizenship information').replace('Contact information',';Contact information')
+testListSplit = alltext_string_all.split('reference number: EU')
+
+# Create dataframe
+dbn_df = pd.DataFrame([sub.split(";") for sub in testListSplit])
+dbn_df.fillna("",inplace=True)
+dbn_df.columns = ['EU Reference', 'Legal basis', 'Programme', 'Identity information', 'Birth information', 'Citizenship information', 'Contact information']
+dataframe = dbn_df
+
+dataframe['Legal basis'] = dataframe['Legal basis'].apply(lambda x: x.replace('Legal basis: ','').replace('\n',''))
+dataframe['Programme'] = dataframe['Programme'].apply(lambda x: x.replace('Programme: ','').replace('\n',''))
+dataframe['Identity information'] = dataframe['Identity information'].apply(lambda x: x.replace('Identity information:','').replace('Name/Alias:',';').replace('•','').replace('Function:','').split(';'))
+dataframe.replace('^\s+', '', regex=True, inplace=True) #front
+dataframe.replace('\s+$', '', regex=True, inplace=True) #end
+dataframe['Birth information'] = dataframe['Birth information'].apply(lambda x: x.replace('Birth information:\n•',''))
+
+dataframe['Identity information'] = dataframe['Identity information'].apply(lambda x: [y.strip() for y in x ])
+
+
+from thefuzz import fuzz, process 
+
+# Preprocessing
+n = dbn_df['Identity information'].to_string().split()
+
+def findBusinessPartner(input, name, threshold):
+    namelist = name.split(" ")
+    print(namelist)
+    count = 0
+    resultlist = []
+    for name in namelist:
+
+        for i in input:
+        
+            if fuzz.ratio(i, name) >= threshold:
+                count += 1
+                #print(fuzz.ratio(i, name), name, i)
+                resultlist.append([fuzz.ratio(i,name) ,name,i])
+                
+    resultlist.sort(key = lambda x: x[0], reverse = True)
+    if count == 0: 
+        print(f'Your requested Business partner {name} with fuzzy threshold {threshold} cannot be found on the EU Sanctions List')
+
+    return resultlist
+
 
 
 col3, col4, col5 = st.columns(3)
@@ -24,60 +87,5 @@ col5.metric("Humidity", "86%", "4%")
 
 
 
-# Further imports 
-import pandas as pd
-import PyPDF2
-from thefuzz import fuzz, process
 
-pdfFileObj = open('20221118-FULL.pdf', 'rb') #Create pdf object
-pdfReader = PyPDF2.PdfFileReader(pdfFileObj) 
-
-# Preprocessing
-allText = ""
-for i in range(100): #Iterating over n pages 
-    pageObj = pdfReader.getPage(i)
-    page = pageObj.extractText()
-    allText += page #Store page content into string variable
-
-
-allText = allText.replace(';','')
-
-alltext_string_all = allText.replace('Legal basis',';Legal basis').replace('Identity information',';Identity information').replace('Programme', ';Programme').replace('Birth information',';Birth information').replace('Citizenship information',';Citizenship information').replace('Contact information',';Contact information').replace('Remark',';Remark')
-testListSplit = alltext_string_all.split('reference number: EU')
-
-# Create dataframe
-dbn_df = pd.DataFrame([sub.split(";") for sub in testListSplit])
-dbn_df.fillna("",inplace=True)
-dbn_df.columns = ['EU Reference', 'Legal basis', 'Programme', 'Identity information', 'Birth information', 'Citizenship information', 'Contact information', 'Remark','','','','','','','','',]
-
-def cleanupDataframe(dataframe):
-    dataframe['Legal basis'] = dataframe['Legal basis'].apply(lambda x: x.replace('Legal basis: ','').replace('\n',''))
-    dataframe['Programme'] = dataframe['Programme'].apply(lambda x: x.replace('Programme: ','').replace('\n',''))
-    dataframe['Identity information'] = dataframe['Identity information'].apply(lambda x: x.replace('Identity information:','').replace('\n','').replace('Name/Alias:',';').replace('•','').replace('Function:',''))
-    dataframe.replace('^\s+', '', regex=True, inplace=True) #front
-    dataframe.replace('\s+$', '', regex=True, inplace=True) #end
-    
-    return dataframe
-
-def stripDataframe(dataframe):
-    dataframe['Identity information'] = dataframe['Identity information'].apply(lambda x: x.strip())
-    
-    return dataframe
-
-cleanupDataframe(dbn_df)
-stripDataframe(dbn_df)
-
-st.dataframe(dbn_df)
-
-n = dbn_df['Identity information'].to_string().split()
-
-# Search function
-def findBusinessPartner(input, name, threshold):
-
-    for i in n:
-        if fuzz.ratio(i, name) >= threshold:
-            print(fuzz.ratio(i, name), name)
-
-
-
-#st.write('Business Partner is', findBusinessPartner(n, userInputName, 60))
+st.write('Business Partner is', findBusinessPartner(n, userInputName, 60))
