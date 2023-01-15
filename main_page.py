@@ -1,11 +1,14 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from thefuzz import fuzz, process 
 
+
+
 # Add a title and intro text
 st.title('European UnionConsolidated Financial Sanctions List')
-st.text('Check the status of potential business partners')
+st.caption('Check the status of potential business partners')
 
 st.sidebar.markdown("# Main page ")
 
@@ -18,9 +21,17 @@ st.write('Entered name', userInputName)
 
 df = pd.read_csv("data/EuropeanSanctions.csv")
 
+col1, col2, col3 = st.columns(3)
+
 
 # Preprocessing
 n = df['Identity information'].to_string().split()
+
+# Functions
+
+
+
+
 
 def findBusinessPartner(input, name, threshold):
     namelist = name.split(" ")
@@ -40,16 +51,13 @@ def findBusinessPartner(input, name, threshold):
     if count == 0: 
         print(f'Your requested Business partner {name} with fuzzy threshold {threshold} cannot be found on the EU Sanctions List')
 
-    return resultlist
+    st.write(resultlist)
 
-
-
-col3, col4, col5 = st.columns(3)
-col3.metric("Temperature", "70 °F", "1.2 °F")
-col4.metric("Wind", "9 mph", "-8%")
-col5.metric("Humidity", "86%", "4%")
-
-
-
-
-st.write('Business Partner is', findBusinessPartner(n, userInputName, 60))
+with col1:
+    st.header('Fuzzy Similarity')
+    'Business Partner is', findBusinessPartner(n, userInputName, 60)
+with col2:
+    st.header('Jaro Winkler Similarity')
+    'Jaro Winkler Similarity', jaro_winkler_sim(n, userInputName)
+with col3:
+    st.metric("Wind", "9 mph", "-8%")
