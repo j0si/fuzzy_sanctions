@@ -70,10 +70,9 @@ def jaro_winkler(str1: str, str2: str) -> float:
                 prefix_len += 1
             else:
                 break
-        result = jaro + 0.1 * prefix_len * (1 - jaro)
+        result = round(jaro + 0.1 * prefix_len * (1 - jaro), 4)
         if result >= 0.5:
-            st.write(result, str1, element)
-
+            st.write(result, element)
 
 
 
@@ -89,17 +88,17 @@ def findBusinessPartner(input, name, threshold):
             if fuzz.ratio(i, name) >= threshold:
                 count += 1
                 #print(fuzz.ratio(i, name), name, i)
-                resultlist.append([fuzz.ratio(i,name) ,name,i])
+                resultlist.append([fuzz.ratio(i,name),name])
                 
     resultlist.sort(key = lambda x: x[0], reverse = True)
     if count == 0: 
         print(f'Your requested Business partner {name} with fuzzy threshold {threshold} cannot be found on the EU Sanctions List')
-
-    st.write(resultlist)
+    for n in resultlist[:5]:
+        st.write(resultlist)
 
 with col1:
     st.header('Fuzzy Similarity')
-    'Business Partner is', findBusinessPartner(n, userInputName, 60)
+    'Fuzzy Score', findBusinessPartner(n, userInputName, 60)
 with col2:
     st.header('Jaro Winkler Similarity')
     'Jaro Winkler Similarity', jaro_winkler(userInputName, n)
