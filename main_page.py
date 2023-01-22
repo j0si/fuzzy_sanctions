@@ -12,7 +12,6 @@ st.caption('Check the status of potential business partners')
 
 st.sidebar.markdown("# Main page ")
 
-#col1, col2 = st.columns(2  )
 userInputName = st.text_input('Enter possible name of partner', 'Search')
 st.write('Entered name', userInputName)
 
@@ -30,8 +29,8 @@ n = df['Identity information'].to_string().split()
 # Functions
 
 def jaro_winkler(str1: str, str2: str) -> float:
-    for element in str2:
-        def get_matched_characters(_str1: str, _str2: str) -> str:
+    resultlist = []
+    def get_matched_characters(_str1: str, _str2: str) -> str:
             matched = []
             limit = min(len(_str1), len(_str2)) // 2
             for i, l in enumerate(_str1):
@@ -41,6 +40,8 @@ def jaro_winkler(str1: str, str2: str) -> float:
                     matched.append(l)
                     _str2 = f"{_str2[0:_str2.index(l)]} {_str2[_str2.index(l) + 1:]}"
             return "".join(matched)
+
+    for element in str2:
 
         # matching characters
         matching_1 = get_matched_characters(str1, element)
@@ -67,40 +68,43 @@ def jaro_winkler(str1: str, str2: str) -> float:
         prefix_len = 0
         for c1, c2 in zip(str1[:4], str2[:4]):
             if c1 == c2:
-                prefix_len += 1
+                prefix_len += 1 
             else:
                 break
-        result = round(jaro + 0.1 * prefix_len * (1 - jaro), 4)
-        if result >= 0.5:
-            st.write(result, element)
+        resultlist.append([round(jaro + 0.1 * prefix_len * (1 - jaro), 4),element])
+
+    resultlist.sort(reverse=True)
+    resultlist = resultlist[:5]
+    print(resultlist)
+
+    st.write("Top 5 Results:")
+    for ele in resultlist:
+        st.write(ele)
+    #     # if result >= 0.5:
+    #     #     st.write(result, element)
 
 
 
-def findBusinessPartner(input, name, threshold):
-    namelist = name.split(" ")
-    print(namelist)
-    count = 0
-    resultlist = []
-    for name in namelist:
+def findBusinessPartner(input, name):
+  
+    resultlist= process.extract(input, name)
+    resultlist.sort()
+    resultlist = resultlist[:5]
+    st.write("Top 5 Results:")
+    resultlist
+    st.write("Return:")
+    for element in resultlist:
+        st.write(element)
+  
 
-        for i in input:
-        
-            if fuzz.ratio(i, name) >= threshold:
-                count += 1
-                #print(fuzz.ratio(i, name), name, i)
-                resultlist.append([fuzz.ratio(i,name),name])
-                
-    resultlist.sort(key = lambda x: x[0], reverse = True)
-    if count == 0: 
-        print(f'Your requested Business partner {name} with fuzzy threshold {threshold} cannot be found on the EU Sanctions List')
-    for n in resultlist[:5]:
-        st.write(resultlist)
+
 
 with col1:
     st.header('Fuzzy Similarity')
-    'Fuzzy Score', findBusinessPartner(n, userInputName, 60)
+    findBusinessPartner(userInputName, n)
 with col2:
-    st.header('Jaro Winkler Similarity')
-    'Jaro Winkler Similarity', jaro_winkler(userInputName, n)
+    st.header("Levenshtein Distance")
+    #'Levenshtein Distance', levenshteinDistanceDP(userInputName, n)
 with col3:
-    st.metric("Wind", "9 mph", "-8%")
+    st.header('Jaro Winkler Similarity')
+    jaro_winkler(userInputName, n)
