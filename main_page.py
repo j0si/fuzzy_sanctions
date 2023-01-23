@@ -27,7 +27,7 @@ st.write('Entered name', userInputName)
 
 df = pd.read_csv("data/EuropeanSanctions.csv")
 
-col1, col2, col3, col4, col5 = st.columns(5)
+col1, col2, col3, col4 = st.columns(4)
 
 
 
@@ -205,18 +205,17 @@ with col1:
     st.header('Fuzzy Similarity')
     findBusinessPartner(userInputName, n)
 with col2:
-    st.header("Levenshtein Distance")
-    #'Levenshtein Distance', levenshteinDistanceDP(userInputName, n)
-with col3:
     st.header('Jaro Winkler Similarity')
     jaro_winkler(userInputName, n)
-with col4:
-    st.header('Levenstein Distance')
+with col3:
+    st.header('Levenshtein Distance')
     levenshteinDistanceDP(userInputName, n)
-with col5:
+with col4:
     st.header('Longest Common Substring')
     lcs(userInputName, n)
-        
+      
+      
+st.markdown('***')  
 st.title("Auto Filter Dataframes in Streamlit")
 
 st.write(
