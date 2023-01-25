@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from thefuzz import fuzz, process 
 import streamlit as st
+import itertools
+import re
 from pandas.api.types import (
     is_categorical_dtype,
     is_datetime64_any_dtype,
@@ -32,8 +34,14 @@ col4, col5 = st.columns(2)
 
 
 # Preprocessing
-n = df['Identity information'].to_string().split()
-
+# datengrundlage preprocessing
+identityInformation = []
+for index, row in df.iterrows():
+    identityInformation.append(df['Identity information'][index])
+#flatlists = list(itertools.chain.from_iterable(identityInformation))
+identityInformation2 = [string.split() for string in identityInformation]
+flatlists2 = list(itertools.chain.from_iterable(identityInformation2))
+flatlists3 = [string for string in flatlists2 if not string.startswith('(')]
 # Functions
 
 def jaro_winkler(str1: str, str2: str) -> float:
@@ -105,18 +113,14 @@ def findBusinessPartner(input, name):
     # for element in resultlist:
     #     st.write(element)
   
-def findBusinessPartnerExtractOne(input, name):
-  
-    resultlist= process.extractOne(input, name, scorer=fuzz.ratio())
+def findBusinessPartnerExtractOne(input, names):
+    resultlist = []
+    for name in names:
+        resultlist.append(fuzz.ratio(input, name), name)
     resultlist.sort()
     resultlist = resultlist[:5]
     st.write("Top 5 Results:")
     resultlist
-    st.write("Return:")
-    print('Fuzzy', resultlist)
-    for element in resultlist:
-        st.write(element)
-
 # levenstein implementation
 import numpy as np
 
@@ -216,20 +220,20 @@ def lcs(S,T):
 
 with col1:
     st.header('Fuzzy Similarity')
-    findBusinessPartner(userInputName, n)
+    findBusinessPartner(userInputName, flatlists3)
 with col2:
     st.header('Jaro Winkler Similarity')
-    jaro_winkler(userInputName, n)
+    jaro_winkler(userInputName, flatlists3)
 with col3:
     st.header('Levenshtein Distance')
-    levenshteinDistanceDP(userInputName, n)
+    levenshteinDistanceDP(userInputName, flatlists3)
     
 with col4:
     st.header('Fuzzy Similarity Fuzz.ratio')
-    findBusinessPartner(userInputName, n)
+    findBusinessPartner(userInputName, flatlists3)
 with col5:
     st.header('Longest Common Substring')
-    lcs(userInputName, n)
+    lcs(userInputName, flatlists3)
             
       
 st.markdown('***')  
@@ -319,4 +323,4 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 st.dataframe(filter_dataframe(df))
 
-st.write(n)
+st.write(flatlists3)
