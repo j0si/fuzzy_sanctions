@@ -27,8 +27,8 @@ st.write('Entered name', userInputName)
 
 df = pd.read_csv("data/EuropeanSanctions.csv")
 
-col1, col2, col3, col4 = st.columns(4)
-
+col1, col2, col3  = st.columns(3)
+col4, col5 = st.columns(2)
 
 
 # Preprocessing
@@ -100,10 +100,23 @@ def findBusinessPartner(input, name):
     resultlist = resultlist[:5]
     st.write("Top 5 Results:")
     resultlist
+    # st.write("Return:")
+    # print('Fuzzy', resultlist)
+    # for element in resultlist:
+    #     st.write(element)
+  
+def findBusinessPartnerExtractOne(input, name):
+  
+    resultlist= process.extractOne(input, name, scorer=fuzz.ratio())
+    resultlist.sort()
+    resultlist = resultlist[:5]
+    st.write("Top 5 Results:")
+    resultlist
     st.write("Return:")
+    print('Fuzzy', resultlist)
     for element in resultlist:
         st.write(element)
-  
+
 # levenstein implementation
 import numpy as np
 
@@ -210,10 +223,14 @@ with col2:
 with col3:
     st.header('Levenshtein Distance')
     levenshteinDistanceDP(userInputName, n)
+    
 with col4:
+    st.header('Fuzzy Similarity Fuzz.ratio')
+    findBusinessPartner(userInputName, n)
+with col5:
     st.header('Longest Common Substring')
     lcs(userInputName, n)
-      
+            
       
 st.markdown('***')  
 st.title("Auto Filter Dataframes in Streamlit")
@@ -301,3 +318,5 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 st.dataframe(filter_dataframe(df))
+
+st.write(n)
