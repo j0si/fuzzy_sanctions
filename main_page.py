@@ -21,8 +21,8 @@ st.set_page_config(
 def draw_all(key,plot=False):
     st.write("""
     # Integrationsseminar Projekt Frontend
-    ## Please enter a name 
     
+
     """)
 
 with st.sidebar:
@@ -55,10 +55,12 @@ flatlists3 = [string for string in flatlists2 if not string.startswith('(')]
 
 
 # Jaro Winkler Implementation
-# @st.cache(suppress_st_warning=True)
 def jaro_winkler(str1: str, str2: str) -> float:
     resultlist = []
-    def get_matched_characters(_str1: str, _str2: str) -> str:
+    
+    for element in str2:
+
+        def get_matched_characters(_str1: str, _str2: str) -> str:
             matched = []
             limit = min(len(_str1), len(_str2)) // 2
             for i, l in enumerate(_str1):
@@ -68,8 +70,6 @@ def jaro_winkler(str1: str, str2: str) -> float:
                     matched.append(l)
                     _str2 = f"{_str2[0:_str2.index(l)]} {_str2[_str2.index(l) + 1:]}"
             return "".join(matched)
-
-    for element in str2:
 
         # matching characters
         matching_1 = get_matched_characters(str1, element)
@@ -88,22 +88,18 @@ def jaro_winkler(str1: str, str2: str) -> float:
                 / 3
                 * (
                     match_count / len(str1)
-                    + match_count / len(str2)
+                    + match_count / len(element)
                     + (match_count - transpositions) / match_count
                 ))
 
         # common prefix up to 4 characters
         prefix_len = 0
-        for c1, c2 in zip(str1[:4], str2[:4]):
+        for c1, c2 in zip(str1[:4], element[:4]):
             if c1 == c2:
                 prefix_len += 1 
             else:
                 break
-        # mit runden
-        # resultlist.append([round(jaro + 0.1 * prefix_len * (1 - jaro), 4),element])
-        
-        # ohne runden
-        resultlist.append([jaro + 0.1 * prefix_len * (1 - jaro),element])
+        resultlist.append([round(jaro + 0.1 * prefix_len * (1 - jaro), 4),element])
 
     resultlist.sort(reverse=True)
     resultlist = resultlist[:5]
@@ -117,7 +113,6 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
 
 # Fuzzy Similarity Implementation
-# @st.cache(suppress_st_warning=True)
 def findBusinessPartner(input, name):
   
     resultlist= process.extract(input, name)
@@ -134,14 +129,12 @@ def findBusinessPartner(input, name):
 # Levenstein Implementation
 import numpy as np
 
-# @st.cache(suppress_st_warning=True)
 def printDistances(distances, token1Length, token2Length):
     for t1 in range(token1Length + 1):
         for t2 in range(token2Length + 1):
             print(int(distances[t1][t2]), end=" ")
         print()
 
-# @st.cache(suppress_st_warning=True)
 def levenshteinDistanceDP(token1, token2):
     
     # safe results
@@ -192,7 +185,7 @@ def levenshteinDistanceDP(token1, token2):
 
 
 # Longest Common Substring
-# @st.cache(suppress_st_warning=True)
+
 def lcs(S,T):
     
     resultlist = []
@@ -231,11 +224,11 @@ def lcs(S,T):
 
 # Display Similarities 
 with col1:
-    st.header('Fuzzy Distance')
+    st.header('Fuzzy Score')
     findBusinessPartner(userInputName, flatlists3)
 
 with col2:
-    st.header('Jaro Winkler Distance')
+    st.header('Jaro Winkler Similarity')
     jaro_winkler(userInputName, flatlists3)
 
 with col3:
@@ -243,12 +236,19 @@ with col3:
     levenshteinDistanceDP(userInputName, flatlists3)
     
 with col4:
-    st.header('Longest Common Substring')
+    st.header('Longest Common Substring ')
     lcs(userInputName, flatlists3)
             
       
 st.markdown('***')  
-st.title("Filter Dataframe in of EU Financial Sanctions")
+st.title("Auto Filter Dataframes in Streamlit")
+
+st.write(
+    """This app accomodates the blog [here](https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/)
+    and walks you through one example of how the Streamlit
+    Data Science Team builds add-on functions to Streamlit.
+    """
+)
 
 
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
@@ -321,7 +321,7 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
                     f"Substring or regex in {column}",
                 )
                 if user_text_input:
-                    df = df[df[column].str.contains(user_text_input, na=False)]
+                    df = df[df[column].str.contains(user_text_input)]
 
     return df
 
