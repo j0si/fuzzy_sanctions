@@ -99,7 +99,11 @@ def jaro_winkler(str1: str, str2: str) -> float:
                 prefix_len += 1 
             else:
                 break
-        resultlist.append([round(jaro + 0.1 * prefix_len * (1 - jaro), 4),element])
+        # mit runden
+        # resultlist.append([round(jaro + 0.1 * prefix_len * (1 - jaro), 4),element])
+        
+        # ohne runden
+        resultlist.append([jaro + 0.1 * prefix_len * (1 - jaro),element])
 
     resultlist.sort(reverse=True)
     resultlist = resultlist[:5]
