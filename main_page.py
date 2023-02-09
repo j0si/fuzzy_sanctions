@@ -247,7 +247,6 @@ st.markdown('***')
 st.title("Filter Dataframe in of EU Financial Sanctions")
 
 
-@st.cache(suppress_st_warning=True)
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """
     Adds a UI on top of a dataframe to let viewers filter columns
