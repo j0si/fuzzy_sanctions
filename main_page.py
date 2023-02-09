@@ -55,6 +55,7 @@ flatlists3 = [string for string in flatlists2 if not string.startswith('(')]
 
 
 # Jaro Winkler Implementation
+@st.cache
 def jaro_winkler(str1: str, str2: str) -> float:
     resultlist = []
     def get_matched_characters(_str1: str, _str2: str) -> str:
@@ -112,6 +113,7 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
 
 # Fuzzy Similarity Implementation
+@st.cache
 def findBusinessPartner(input, name):
   
     resultlist= process.extract(input, name)
@@ -128,12 +130,14 @@ def findBusinessPartner(input, name):
 # Levenstein Implementation
 import numpy as np
 
+@st.cache
 def printDistances(distances, token1Length, token2Length):
     for t1 in range(token1Length + 1):
         for t2 in range(token2Length + 1):
             print(int(distances[t1][t2]), end=" ")
         print()
 
+@st.cache
 def levenshteinDistanceDP(token1, token2):
     
     # safe results
@@ -184,7 +188,7 @@ def levenshteinDistanceDP(token1, token2):
 
 
 # Longest Common Substring
-
+@st.cache
 def lcs(S,T):
     
     resultlist = []
@@ -240,16 +244,10 @@ with col4:
             
       
 st.markdown('***')  
-st.title("Auto Filter Dataframes in Streamlit")
-
-st.write(
-    """This app accomodates the blog [here](https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/)
-    and walks you through one example of how the Streamlit
-    Data Science Team builds add-on functions to Streamlit.
-    """
-)
+st.title("Filter Dataframe in of EU Financial Sanctions")
 
 
+@st.cache
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """
     Adds a UI on top of a dataframe to let viewers filter columns
