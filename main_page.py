@@ -55,7 +55,7 @@ flatlists3 = [string for string in flatlists2 if not string.startswith('(')]
 
 
 # Jaro Winkler Implementation
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def jaro_winkler(str1: str, str2: str) -> float:
     resultlist = []
     def get_matched_characters(_str1: str, _str2: str) -> str:
@@ -113,7 +113,7 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
 
 # Fuzzy Similarity Implementation
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def findBusinessPartner(input, name):
   
     resultlist= process.extract(input, name)
@@ -130,14 +130,14 @@ def findBusinessPartner(input, name):
 # Levenstein Implementation
 import numpy as np
 
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def printDistances(distances, token1Length, token2Length):
     for t1 in range(token1Length + 1):
         for t2 in range(token2Length + 1):
             print(int(distances[t1][t2]), end=" ")
         print()
 
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def levenshteinDistanceDP(token1, token2):
     
     # safe results
@@ -188,7 +188,7 @@ def levenshteinDistanceDP(token1, token2):
 
 
 # Longest Common Substring
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def lcs(S,T):
     
     resultlist = []
