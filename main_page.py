@@ -13,28 +13,38 @@ from pandas.api.types import (
     is_object_dtype,
 )
 
+st.set_page_config(
+    page_title = "Fuzzy Sanctions",
+    layout="wide"
+    )
 
+def draw_all(key,plot=False):
+    st.write("""
+    # Integrationsseminar Projekt Frontend
+    ## Please enter a name 
+    
+    """)
+
+with st.sidebar:
+    draw_all("sidebar")
 
 # Add a title and intro text
-st.title('European UnionConsolidated Financial Sanctions List')
-st.caption('Check the status of potential business partners')
+st.title('European Union Consolidated Financial Sanctions List')
+#st.sidebar.markdown("# Main page ")
 
-st.sidebar.markdown("# Main page ")
 
 userInputName = st.text_input('Enter possible name of partner', 'Search')
 st.write('Entered name', userInputName)
 
-#userInputAddress = col2.st.text_input('Enter possible address of partner', 'Search')
-#col2.st.write('Entered address')
+col1, col2, col3, col4 = st.columns(4)
+#col4, col5 = st.columns(2)
 
+
+# Preprocessing 
+## Einlesen der Daten
 df = pd.read_csv("data/EuropeanSanctions.csv")
 
-col1, col2, col3  = st.columns(3)
-col4, col5 = st.columns(2)
-
-
-# Preprocessing
-# datengrundlage preprocessing
+## Erstellen der Datengrundlage
 identityInformation = []
 for index, row in df.iterrows():
     identityInformation.append(df['Identity information'][index])
@@ -42,8 +52,9 @@ for index, row in df.iterrows():
 identityInformation2 = [string.split() for string in identityInformation]
 flatlists2 = list(itertools.chain.from_iterable(identityInformation2))
 flatlists3 = [string for string in flatlists2 if not string.startswith('(')]
-# Functions
 
+
+# Jaro Winkler Implementation
 def jaro_winkler(str1: str, str2: str) -> float:
     resultlist = []
     def get_matched_characters(_str1: str, _str2: str) -> str:
@@ -100,7 +111,7 @@ def jaro_winkler(str1: str, str2: str) -> float:
     #     #     st.write(result, element)
 
 
-
+# Fuzzy Similarity Implementation
 def findBusinessPartner(input, name):
   
     resultlist= process.extract(input, name)
@@ -112,16 +123,9 @@ def findBusinessPartner(input, name):
     # print('Fuzzy', resultlist)
     # for element in resultlist:
     #     st.write(element)
-  
-def findBusinessPartnerExtractOne(input, names):
-    resultlist = []
-    for name in names:
-        resultlist.append(fuzz.ratio(input, name), name)
-    resultlist.sort()
-    resultlist = resultlist[:5]
-    st.write("Top 5 Results:")
-    resultlist
-# levenstein implementation
+
+
+# Levenstein Implementation
 import numpy as np
 
 def printDistances(distances, token1Length, token2Length):
@@ -179,7 +183,7 @@ def levenshteinDistanceDP(token1, token2):
         st.write(ele)
 
 
-# longest common substring
+# Longest Common Substring
 
 def lcs(S,T):
     
@@ -217,21 +221,20 @@ def lcs(S,T):
         st.write(ele)
 
 
-
+# Display Similarities 
 with col1:
-    st.header('Fuzzy Similarity')
+    st.header('Fuzzy Distance')
     findBusinessPartner(userInputName, flatlists3)
+
 with col2:
-    st.header('Jaro Winkler Similarity')
+    st.header('Jaro Winkler Distance')
     jaro_winkler(userInputName, flatlists3)
+
 with col3:
     st.header('Levenshtein Distance')
     levenshteinDistanceDP(userInputName, flatlists3)
     
 with col4:
-    st.header('Fuzzy Similarity Fuzz.ratio')
-    findBusinessPartner(userInputName, flatlists3)
-with col5:
     st.header('Longest Common Substring')
     lcs(userInputName, flatlists3)
             
@@ -323,4 +326,5 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 st.dataframe(filter_dataframe(df))
 
+st.write('Input Data')
 st.write(flatlists3)
