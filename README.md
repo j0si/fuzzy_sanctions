@@ -6,9 +6,10 @@ Aufgabe: Unter Verwendung existierender Python-Bibliotheken (Gensim, etc) Erstel
 
 ## Fuzzy Sanctions Frontent (UI)
 
-Das UI ist verfügbar unter folgender URL:
+Hosting des UI mittels Streamlit. Das Frontend ist verfügbar unter folgender URL beziehungsweise QR-Code.
 
 - https://fuzzy-sanctions.streamlit.app/
+
 
 ![Alt text](img/bad4f017-a6b8-42fe-b51b-8cde08de2fbf.jpg)
 
