@@ -5,8 +5,10 @@ Aufgabe: Unter Verwendung existierender Python-Bibliotheken (Gensim, etc) Erstel
 ---
 ## Fuzzy Sanctions Frontent (UI)
 
-- https://fuzzy-sanctions.streamlit.app/
+Das UI ist verfügbar unter folgender URL:
 
+- https://fuzzy-sanctions.streamlit.app/
+---
 Bereich: Natural Language Processing
 ---
 ## Was wollen wir erreichen?
