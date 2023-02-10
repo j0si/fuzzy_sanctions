@@ -1,7 +1,9 @@
 # Fuzzy_sanctions
----
+
+
 Einsatz von Word Embedding-Algorithmen in Business Anwendungen
 Aufgabe: Unter Verwendung existierender Python-Bibliotheken (Gensim, etc) Erstellung eines Screening-Algorithmus: Nutzen europäischer Sanktionslisten als Corpus, um einen gegebenen Business Partner (d.h. Namen- und Adress-Information) "fuzzy" zu identifizieren oder zu "entlasten". Entwicklung von Qualitätskennzahlen und gegebenenfalls eines UIs
+
 ---
 
 ## Fuzzy Sanctions Frontent (UI)
@@ -63,12 +65,15 @@ Fuzzy matching entities in a custom entity dictionary
 - spacy
 - gensim
 
+## Pretrained NER tagger
+- https://huggingface.co/dslim/bert-base-NER
+
 ## word embeddings
 - https://towardsdatascience.com/word-embeddings-exploration-explanation-and-exploitation-with-code-in-python-5dac99d5d795
 Gensim_Word2Vec_Tutorial
 - https://www.kaggle.com/code/pierremegret/gensim-word2vec-tutorial
 
-##additional ideas
+## additional ideas
 - Categories of Sanctions
 - Country separation
 - Male / Female 
