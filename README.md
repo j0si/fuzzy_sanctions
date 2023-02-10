@@ -1,14 +1,16 @@
 # Fuzzy_sanctions
----
+
 Einsatz von Word Embedding-Algorithmen in Business Anwendungen
 Aufgabe: Unter Verwendung existierender Python-Bibliotheken (Gensim, etc) Erstellung eines Screening-Algorithmus: Nutzen europäischer Sanktionslisten als Corpus, um einen gegebenen Business Partner (d.h. Namen- und Adress-Information) "fuzzy" zu identifizieren oder zu "entlasten". Entwicklung von Qualitätskennzahlen und gegebenenfalls eines UIs
----
+
 ## Fuzzy Sanctions Frontent (UI)
 
 Das UI ist verfügbar unter folgender URL:
 
 - https://fuzzy-sanctions.streamlit.app/
+
 ---
+
 Bereich: Natural Language Processing
 ---
 ## Was wollen wir erreichen?
