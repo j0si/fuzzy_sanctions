@@ -12,11 +12,11 @@ Das UI ist verfügbar unter folgender URL:
 
 Bereich: Natural Language Processing
 ---
-## Was wollen wir erreichen?
+## Zieldefinition
 1. Eingabe von Namen eines Businesspartners
    1. Sofern der Name Falsch geschrieben wurde soll eine Word-Embedding Methode den richtigen Namen Fuzzy erkennen können
 2. Ergebnis, ob dieser Name in sanktionsliste vorhanden oder nicht
-3. WebApp für die Eingabe und das Ausgeben der Ergebnisse
+3. FrontEnd für die Eingabe und Ausgabe der Ergebnisse
 4. Ergebnis mit relevanten Kennzahlen (güte von word embedding)
    1. extrinsisch
       - wie gut funktioniert ein anderes modell?
@@ -25,7 +25,7 @@ Bereich: Natural Language Processing
       - wort vektoren anschauen, wie gut sind die? 
       - mit menschlichen dictionaries vergleichen ob der vektor genau die gleiche ähnlichkeit ausssagt!
 
-## Linkliste, erster research
+## erster Research (tieferes Literaturverzeichnis in schriftlicher Ausarbeitung)
 - https://towardsdatascience.com/fuzzy-string-matching-in-python-68f240d910fe
 - https://www.activestate.com/blog/how-to-implement-fuzzy-matching-in-python/
 - https://pypi.org/project/fuzzysearch/
@@ -48,6 +48,7 @@ Fuzzy matching entities in a custom entity dictionary
 
 ## Packages
 - PyPDF2
+- theFuzz
 - spacy
 - gensim
 
@@ -55,8 +56,6 @@ Fuzzy matching entities in a custom entity dictionary
 - https://towardsdatascience.com/word-embeddings-exploration-explanation-and-exploitation-with-code-in-python-5dac99d5d795
 Gensim_Word2Vec_Tutorial
 - https://www.kaggle.com/code/pierremegret/gensim-word2vec-tutorial
-
-## Welche zwischenschritte haben wir?
 
 ##additional ideas
 - Categories of Sanctions
