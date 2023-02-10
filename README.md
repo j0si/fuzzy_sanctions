@@ -31,6 +31,8 @@ Hosting des UI mittels Streamlit. Das Frontend ist verfügbar unter folgender UR
 
 ## Ergebnis 
 - "Fuzzy" Suchmaschine für finanzsankionierte Personen, Entitäten und Gruppen
+- Bereinigung der Daten mittels NER
+- Word Embedding (Word2vec) und Vektorbasierte Vergleichsmethoden aufgrund der fehlenden Daten (Volltext) ausgeschlossen
 - Ausgabe mittels verschiedener Vergleichsmethoden
 - Ausgabe Personen-, Entitäten- bzw. Gruppenbezogenen Informationen
 
