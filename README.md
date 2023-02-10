@@ -17,11 +17,11 @@ Hosting des UI mittels Streamlit. Das Frontend ist verfügbar unter folgender UR
 
 
 ## Zieldefinition
-1. Eingabe von Namen eines Businesspartners
-   1. Sofern der Name Falsch geschrieben wurde soll eine Word-Embedding Methode den richtigen Namen Fuzzy erkennen können
-2. Ergebnis, ob dieser Name in sanktionsliste vorhanden oder nicht
-3. FrontEnd für die Eingabe und Ausgabe der Ergebnisse
-4. Ergebnis mit relevanten Kennzahlen (güte von word embedding)
+- Eingabe von Namen (Personene, Entitäten oder Gruppen)
+  -> Unscharfe beziehungsweise fehlertolerate Suchmaschine (Fuzzy)
+- Ergebnisausgabe: Namen mit der höchsten Ähnlichkeit und zugehöriger Score 
+- FrontEnd (UI) für die Eingabe und Darstellung der Ergebnisse
+- Darstellung der relevanten Kennzahlen bzw. Güte
    1. extrinsisch
       - wie gut funktioniert ein anderes modell?
       - wie gut funktioniert die klassifikiation
