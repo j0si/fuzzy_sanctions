@@ -10,6 +10,7 @@ Das UI ist verfügbar unter folgender URL:
 
 - https://fuzzy-sanctions.streamlit.app/
 
+![Alt text](img/bad4f017-a6b8-42fe-b51b-8cde08de2fbf.jpg)
 
 ## Bereich: Natural Language Processing
 
