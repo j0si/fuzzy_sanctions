@@ -10,8 +10,10 @@ Das UI ist verfügbar unter folgender URL:
 
 - https://fuzzy-sanctions.streamlit.app/
 
-Bereich: Natural Language Processing
----
+
+## Bereich: Natural Language Processing
+
+
 ## Zieldefinition
 1. Eingabe von Namen eines Businesspartners
    1. Sofern der Name Falsch geschrieben wurde soll eine Word-Embedding Methode den richtigen Namen Fuzzy erkennen können
@@ -24,6 +26,11 @@ Bereich: Natural Language Processing
    2. intrinsisch
       - wort vektoren anschauen, wie gut sind die? 
       - mit menschlichen dictionaries vergleichen ob der vektor genau die gleiche ähnlichkeit ausssagt!
+
+## Ergebnis 
+- "Fuzzy" Suchmaschine für finanzsankionierte Personen, Entitäten und Gruppen
+- Ausgabe mittels verschiedener Vergleichsmethoden
+- Ausgabe Personen-, Entitäten- bzw. Gruppenbezogenen Informationen
 
 ## erster Research (tieferes Literaturverzeichnis in schriftlicher Ausarbeitung)
 - https://towardsdatascience.com/fuzzy-string-matching-in-python-68f240d910fe
