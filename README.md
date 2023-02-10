@@ -9,7 +9,7 @@ Aufgabe: Unter Verwendung existierender Python-Bibliotheken (Gensim, etc) Erstel
 Das UI ist verfügbar unter folgender URL:
 
 - https://fuzzy-sanctions.streamlit.app/
-s
+
 Bereich: Natural Language Processing
 ---
 ## Was wollen wir erreichen?
